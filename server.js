@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-
+import connectDB from "./config/dbConnection.js";
 
 // configure env
 dotenv.config();
@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 4500;
 
 // initialize app
 const app = express();
+
+// mongodb connection
+connectDB();
 
 // test api
 app.get("/", (req, res) => {
