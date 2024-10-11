@@ -1,6 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import connectDB from "./config/dbConnection.js";
+import cors from "cors"
+
+// routers import
+import authRoutes from "./routes/authRoute.js";
+import quizRoutes from './routes/quizRoutes.js'
+import questionRoutes from './routes/questionRoutes.js'
 
 // configure env
 dotenv.config();
@@ -13,6 +20,19 @@ const app = express();
 
 // mongodb connection
 connectDB();
+
+// middlewares
+app.use(cors({
+  origin: '*',   // Replace with the frontend origin
+  credentials: true, // Allow credentials (cookies)
+}));
+app.use(express.json());
+app.use(cookieParser());
+
+// routes
+app.use("/api/auth", authRoutes);
+app.use("/api/quiz", quizRoutes);
+app.use("/api/question", questionRoutes);
 
 // test api
 app.get("/", (req, res) => {

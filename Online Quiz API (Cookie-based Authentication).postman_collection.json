@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "1e8a22e1-8bbd-4f79-a6cb-ceb9bb09b233",
+		"name": "Online Quiz API (Cookie-based Authentication)",
+		"description": "Postman collection for the Online Quiz API with cookie-based authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19170929"
+	},
+	"item": [
+		{
+			"name": "User Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\",\n    \"email\": \"testuser@example.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testuser@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz Management",
+			"item": [
+				{
+					"name": "Create Quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Basic JavaScript Quiz\",\n    \"description\": \"A simple JavaScript quiz\",\n    \"questions\": [\n        \"670948fedcea84cfc8134a66\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/quiz",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Quizzes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/quiz/quizzes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"quiz",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/quiz/{{quizId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"quiz",
+								"{{quizId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"answers\": [\n        {\n            \"questionId\": \"670948fedcea84cfc8134a66\",\n            \"selectedOption\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/quiz/submit/{{quizId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"quiz",
+								"submit",
+								"{{quizId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question Management",
+			"item": [
+				{
+					"name": "Add Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionText\": \"What is the capital of France?\",\n    \"options\": [\n        \"Berlin\",\n        \"Madrid\",\n        \"Paris\",\n        \"Rome\"\n    ],\n    \"correctOption\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/question",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionText\": \"What is the capital of Germany?\",\n    \"options\": [\n        \"Berlin\",\n        \"Paris\",\n        \"Madrid\",\n        \"Rome\"\n    ],\n    \"correctOption\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/question/{{questionId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"question",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/question/{{questionId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"question",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/question/{{questionId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"question",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/question/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"question",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "authToken",
+			"value": ""
+		},
+		{
+			"key": "quizId",
+			"value": ""
+		},
+		{
+			"key": "questionId",
+			"value": ""
+		}
+	]
+}
